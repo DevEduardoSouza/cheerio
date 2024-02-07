@@ -17,7 +17,8 @@ const data = [
           price:
             "div.ui-search-result__content > div.ui-search-result__content-wrapper > div.ui-search-item__group.ui-search-item__group--price.ui-search-item__group--price-grid-container > div > div > div > span.andes-money-amount.ui-search-price__part.ui-search-price__part--medium.andes-money-amount--cents-superscript",
           description: "",
-          imgSrc: "img[fetchpriority=high]",
+          imgSrc:
+            "div.andes-carousel-snapped__controls-wrapper div.andes-carousel-snapped__slide img",
           link: ".ui-search-item__group__element.ui-search-link__title-card.ui-search-link",
           frete:
             "div.ui-search-result__content > div.ui-search-result__content-wrapper > div.ui-pb",

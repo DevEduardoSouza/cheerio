@@ -1,5 +1,6 @@
 import * as cheerio from "cheerio";
 import { getPage } from "../http/http.js";
+import { initBrowser } from "../puppeteer/Puppeteer.js";
 
 const products = [];
 
@@ -33,14 +34,23 @@ export const scrapePage = async (data) => {
   let link = formatLink(linkBase, termOfSearch);
   console.log(link);
 
-  const html = await getPage(link);
+  // Inicia o navegador com Puppeteer
+  const page = await initBrowser();
+  await page.goto(link);
 
-  const $ = cheerio.load(html);
+  // Extrai o HTML da página carregada com Puppeteer
+  const htmlContent = await page.content();
+  const $ = cheerio.load(htmlContent);
+
+  // cheerio
+  // const html = await getPage(link);
+  // const $ = cheerio.load(html);
 
   $(listProducts).each((i, value) => {
     const title = $(value).find(nameProduct).text();
     const price = $(value).find(priceProduct).text();
-    const img = $(value).find(imgSrcSelector).attr("src");
+    const img = $(value).find(imgSrcSelector).attr("data-src");
+
 
     const link = $(value).find(linkProduct).attr("href");
     const frete = $(value).find(freteProduct).text();
