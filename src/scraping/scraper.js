@@ -1,6 +1,8 @@
 import * as cheerio from "cheerio";
 import { getPage } from "../http/http.js";
 
+const products = [];
+
 const formatLink = (link, therm) => {
   link = link.replace(/{TERMO}/g, therm);
 
@@ -14,30 +16,38 @@ const formatLink = (link, therm) => {
   return link.replace(/\d+/g, index);
 };
 
-export const scrapePage = async ({ name, linkBase, termOfSearch }) => {
+export const scrapePage = async (data) => {
+  const { name, linkBase, termOfSearch } = data;
+  const {
+    products: listProducts,
+    name: nameProduct,
+    price: priceProduct,
+    imgSrc: imgSrcSelector,
+    link: linkProduct,
+    frete: freteProduct,
+    reviews: reviewsProduct,
+  } = data.sectores;
+
   console.log(`Scaping iniciando no ${name} com termo ${termOfSearch}`);
 
   let link = formatLink(linkBase, termOfSearch);
   console.log(link);
 
   const html = await getPage(link);
-  console.log(html);
 
-  // const $ = cheerio.load(html);
-  // const products = [];
+  const $ = cheerio.load(html);
 
-  // $(".sc-kTbCBX.ciMFyT").each((i, value) => {
-  //   const linkProduct = $(value)
-  //     .find("a[data-testid=product-card-container]")
-  //     .attr("href");
-  //   const imgSrc = $(value)
-  //     .find(".sc-gZfzYS.kWXvSd img[data-testid=image]")
-  //     .attr("src");
-  //   const title = $(value).find(".availablePricesCard span").text();
-  //   const price = $(value).find(".priceCard").text();
+  $(listProducts).each((i, value) => {
+    const title = $(value).find(nameProduct).text();
+    const price = $(value).find(priceProduct).text();
+    const img = $(value).find(imgSrcSelector).attr("src");
 
-  //   products.push({ linkProduct, imgSrc, title, price });
-  // });
+    const link = $(value).find(linkProduct).attr("href");
+    const frete = $(value).find(freteProduct).text();
+    const reviews = $(value).find(reviewsProduct).text();
+
+    products.push({ title, price, img, link, frete, reviews });
+  });
 
   return products;
 };
