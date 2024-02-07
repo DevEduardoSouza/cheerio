@@ -19,17 +19,17 @@ O projeto atual realiza as seguintes tarefas:
 1. Clone este repositório para o seu ambiente local:
 
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone https://github.com/DevEduardoSouza/web-scraping.git
 
 2. Acesse o diretório do projeto:
       ```bash
-        cd nome-do-repositorio
+        cd web-scraping
 
 3. Instale as dependências do projeto:
       ```bash
         npm install
       
-4. Acesse *data.js* e faça sua configuração:
+4. Acesse *data.js* e faça sua configuraçôes:
     ```js
     const data = [
       {
