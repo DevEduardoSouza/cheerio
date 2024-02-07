@@ -7,7 +7,7 @@ const redColor = "\x1b[31m";
 const puppeteerConfigs = {
   executablePath:
     "C:/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe",
-  headless: false,
+  headless: true,
   timeout: 60000,
   defaultViewport: {
     width: 800,
