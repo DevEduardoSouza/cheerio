@@ -3,7 +3,7 @@ import data from "../data/data.js";
 
 const configs = data[0].ecommerces[0];
 
-export const crud = {
+export const db = {
   save: (data) => {
     console.log(configs);
     const csvContent = `Image,Title,Price,Link,Frete,Reviews\n${data

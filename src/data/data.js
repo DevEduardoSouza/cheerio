@@ -26,6 +26,7 @@ const data = [
           reviews:
             "div.ui-search-result__content > div > div.ui-search-item__group.ui-search-item__group--title > div > span.andes-visually-hidden",
         },
+        amountPages: 10,
       },
     ],
   },

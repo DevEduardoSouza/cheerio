@@ -1,0 +1,2 @@
+- Add tempo randômico entra as páginas
+- Organizar o scraping por páginas com data e termo de busca
