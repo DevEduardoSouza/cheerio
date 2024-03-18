@@ -3,7 +3,6 @@ import data from "./data/data.js";
 import { db } from "./db/save.js";
 
 const dataEcommerces = data[0].ecommerces[0];
-console.log(dataEcommerces);
 
 async function main() {
   try {

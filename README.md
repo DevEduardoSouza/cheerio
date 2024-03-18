@@ -27,10 +27,14 @@ O projeto atual realiza as seguintes tarefas:
 
 3. Instale as dependências do projeto:
       ```bash
-        npm install
+        npm i
       
 4. Acesse *data.js* e faça sua configuraçôes:
     ```js
+
+    <!-- Campos que pode ser modificados -->
+    <!-- termOfSearch -->
+    
     const data = [
       {
         ecommerces: [
