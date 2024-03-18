@@ -1,6 +1,7 @@
 import * as cheerio from "cheerio";
 import { initBrowser } from "../puppeteer/Puppeteer.js";
 import { formatLink } from "../utils/utils.js";
+import { colors } from "../assets/colors.js";
 
 const products = [];
 
@@ -17,7 +18,7 @@ export const scrapePage = async (data) => {
   } = data.sectores;
 
   console.log(
-    `Scaping iniciando no ${name} com termo ${termOfSearch}, buscando ${amountPages} páginas`
+    `Scaping iniciando no ${name} com termo ${termOfSearch}. Buscando ${amountPages} páginas...`
   );
 
   // Inicia o navegador com Puppeteer
@@ -27,7 +28,10 @@ export const scrapePage = async (data) => {
 
   for (let i = 0; i < amountPages; i++) {
     link = formatLink(link, termOfSearch);
-    console.log(link);
+
+    console.log(
+      `${colors.greenColor}✅ Scaping ${i}/${amountPages} ${colors.resetColor}`
+    );
 
     await page.goto(link);
 
