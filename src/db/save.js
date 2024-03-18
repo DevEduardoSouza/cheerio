@@ -1,11 +1,11 @@
 import * as fs from "fs";
 import data from "../data/data.js";
-
+import { colors } from "../assets/colors.js";
+"../results"
 const configs = data[0].ecommerces[0];
 
 export const db = {
   save: (data) => {
-    console.log(configs);
     const csvContent = `Image,Title,Price,Link,Frete,Reviews\n${data
       .map((item) => {
         const price = item.price.replace(",", ".");
@@ -19,12 +19,16 @@ export const db = {
       })
       .join("\n")}`;
 
-    fs.writeFile(`${configs.termOfSearch}.csv`, csvContent, (err) => {
+    fs.writeFile(`src/results/${configs.termOfSearch}.csv`, csvContent, (err) => {
       if (err) {
-        console.log("Erro ao salvar");
+        console.log(
+          `${colors.redColor}Erro ao salvar o arquivo ${configs.termOfSearch}.csv em  "results/${configs.termOfSearch}.csv" ${colors.resetColor}\n${err}`
+        );
         return;
       }
-      console.log("Saved!");
+      console.log(
+        `${colors.greenColor}Arquivo salvo com sucesso em results/${configs.termOfSearch}.csv${colors.resetColor}`
+      );
     });
   },
 };
